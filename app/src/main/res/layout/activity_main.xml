@@ -26,7 +26,8 @@
         android:layout_below="@+id/textView"
         android:layout_above="@+id/button"
         android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_alignEnd="@+id/button"
+        android:background="#82ffffff" />
 
     <Button
         android:layout_width="match_parent"
