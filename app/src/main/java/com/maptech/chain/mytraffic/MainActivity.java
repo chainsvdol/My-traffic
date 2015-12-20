@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private void listViewController() {
 
         // Setup Array #1
-        int[] intIcon = {R.drawable.traffic_01, R.drawable.traffic_02,
+        final int[] intIcon = {R.drawable.traffic_01, R.drawable.traffic_02,
                 R.drawable.traffic_03, R.drawable.traffic_04, R.drawable.traffic_05,
                 R.drawable.traffic_06, R.drawable.traffic_07, R.drawable.traffic_08,
                 R.drawable.traffic_09, R.drawable.traffic_10, R.drawable.traffic_11,
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.traffic_18, R.drawable.traffic_19, R.drawable.traffic_20};
 
         // Setup Array #2
-        String[] titlestrings = new String[20];
+        final String[] titlestrings = new String[20];
         titlestrings[0] = "หัวข้อที่ 1";
         titlestrings[1] = "หัวข้อที่ 2";
         titlestrings[2] = "หัวข้อที่ 3";
@@ -77,6 +78,26 @@ public class MainActivity extends AppCompatActivity {
 
         MyAdapter objMyAdapter =new MyAdapter(MainActivity.this,titlestrings,strTitle2,intIcon);
         trafficListView.setAdapter(objMyAdapter);
+
+        // Active when click Listview
+
+        trafficListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent objIntent = new Intent(MainActivity.this,DetailActivity.class);
+
+                objIntent.putExtra("Head", titlestrings[position]);
+                objIntent.putExtra("Image", intIcon[position]);
+                objIntent.putExtra("Index", position);
+
+
+                startActivity(objIntent);
+
+
+            }
+        });
+
 
 
     }      // ListViewController
